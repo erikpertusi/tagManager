@@ -45,8 +45,8 @@ class TagController extends Controller
 
     }
 
-    public function get()
+    public function get(Request $request)
     {
-        return Tag::all();
+        return TagServiceFacade::getTags($request->p);
     }
 }

@@ -6,6 +6,14 @@
                     <a href="#" v-on:click="loadTag(item)">{{ item.name }}</a>
                 </li>
             </ul>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="#" v-if="page > 1" v-on:click="getTags(false, true)">Anterior</a>
+                </div>
+                <div class="col-sm-6">
+                    <a href="#" v-on:click="getTags(true, false)">Próxima</a>
+                </div>
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="card">
@@ -32,7 +40,8 @@
             return {
                 tags: [],
                 nameTag: null,
-                idTag: 0
+                idTag: 0,
+                page: 1
             }
         },
         methods: {
@@ -54,8 +63,14 @@
                         self.getTags();
                     });
             },
-            getTags() {
-                axios.get('./api/tags').then(response => this.tags = response.data);
+            getTags(next, previous) {
+                if (next) {
+                    this.page++;
+                }
+                if (previous) {
+                    this.page--;
+                }
+                axios.get('./api/tags?p=' + this.page).then(response => this.tags = response.data);
             }
         },
         mounted() {
