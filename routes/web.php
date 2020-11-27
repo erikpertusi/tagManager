@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('vue.template.app-vue');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/tags', 'TagController@index')->name('tags');
+Route::get('/api/tags', 'TagController@get');
+Route::post('/tags', 'TagController@store');
+Route::delete('/tags/{id}', 'TagController@destroy');

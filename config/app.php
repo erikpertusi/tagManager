@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\Request\RequestServiceProvider::class,
+        App\Providers\Tag\TagServiceProvider::class,
+
     ],
 
     /*
@@ -227,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'TagService' => App\Services\Tag\TagServiceFacade::class
     ],
 
 ];
