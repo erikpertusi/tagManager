@@ -54,6 +54,8 @@
                 axios.post('/tags', {name: this.nameTag, id: this.idTag})
                     .then(function (response) {
                         self.getTags();
+                        self.nameTag = '';
+                        self.idTag = 0;
                     });
             },
             deleteTag() {
