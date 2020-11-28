@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nome</label>
-                        <input type="string" class="form-control" placeholder="Digite nome da tag" v-model="nameTag">
+                        <input type="text" class="form-control" placeholder="Digite nome da tag" v-model="nameTag">
                         <input type="hidden" class="form-control" v-model="idTag">
                     </div>
                     <button type="button" class="btn btn-success" v-on:click="storeTag()">Salvar</button>

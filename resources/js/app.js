@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('tags', require('./components/Tags.vue').default);
+Vue.component('search', require('./components/Search.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

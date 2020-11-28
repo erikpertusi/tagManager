@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/* TAGS */
 Route::get('/tags', 'TagController@index')->name('tags');
 Route::get('/api/tags', 'TagController@get');
 Route::post('/tags', 'TagController@store');

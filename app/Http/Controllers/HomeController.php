@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('vue.template.app-vue')->with([
+            'title' => 'Busca repositorios',
+            'vueComponent' => 'search'
+        ]);
     }
 }
