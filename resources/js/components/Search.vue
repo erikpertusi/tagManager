@@ -24,9 +24,8 @@
         </div>
         <br/>
         <div class="col-sm-12">
-            <ul id="example-1" class="list-group">
+            <ul class="list-group">
                 <li v-for="item in list" :key="item.id" class="list-group-item">
-
                     <div style="float: left">
                         <b>{{ item.name }}</b>
                     </div>

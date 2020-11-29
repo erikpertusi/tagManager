@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <ul id="example-1" class="list-group">
+                            <ul class="list-group">
                                 <li v-for="item in repositories" :key="item.id" class="list-group-item">
                                     <a :href="item.link" target="_blank"><b>{{ item.name }}</b></a>
                                     <br/>

@@ -1,9 +1,15 @@
 <template>
     <div class="row">
         <div class="col-sm-6">
-            <ul id="example-1" class="list-group">
+            <ul id="" class="list-group">
                 <li v-for="item in tags" :key="item.id" class="list-group-item">
-                    <a href="#" v-on:click="loadTag(item)">{{ item.name }}</a>
+                    <div style="float: left">
+                        <a href="#" v-on:click="loadTag(item)">{{ item.name }}</a>
+                    </div>
+                    <div style="float: right" v-if="item.repositories.length > 0">
+                        <a href="#" data-toggle="modal" data-target="#modalRepository" v-on:click="setRepositories(item.repositories)"><i class="fa fa-list text-info" aria-hidden="true" title="Listar Repositorios"></i></a>
+                    </div>
+
                 </li>
             </ul>
             <div class="row">
@@ -32,6 +38,7 @@
                 </div>
             </div>
         </div>
+        <modal-list :repositories="repositories"></modal-list>
     </div>
 </template>
 <script>
@@ -44,7 +51,8 @@
                 page: 1,
                 perPage: 15,
                 total: 0,
-                next: false
+                next: false,
+                repositories: []
             }
         },
         methods: {
@@ -80,6 +88,9 @@
                     self.tags = response.data.items;
                     self.total = response.data.total_count;
                 });
+            },
+            setRepositories(repositories) {
+                this.repositories = repositories;
             }
         },
         watch: {
