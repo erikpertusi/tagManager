@@ -24,6 +24,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('tags', require('./components/Tags.vue').default);
 Vue.component('search', require('./components/Search.vue').default);
 Vue.component('modal-add-tag', require('./components/ModalAddTag.vue').default);
+Vue.component('modal-list', require('./components/ModalList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
