@@ -19,5 +19,4 @@ class Repository extends Model
         'language',
         'stars'
     ];
-
 }

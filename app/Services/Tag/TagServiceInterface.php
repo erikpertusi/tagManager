@@ -2,10 +2,11 @@
 
 namespace App\Services\Tag;
 
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
-
 interface TagServiceInterface
 {
+    public function store(int $id, string $name);
 
+    public function destroy(int $id);
+
+    public function getTags(int $page, int $perPage);
 }

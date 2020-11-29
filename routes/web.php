@@ -26,3 +26,10 @@ Route::get('/tags', 'TagController@index')->name('tags');
 Route::get('/api/tags', 'TagController@get');
 Route::post('/tags', 'TagController@store');
 Route::delete('/tags/{id}', 'TagController@destroy');
+
+Route::get('/api/tags', 'TagController@get');
+Route::get('/repositories', 'RepositoryController@index');
+Route::post('/repositories', 'RepositoryController@store');
+Route::delete('/tags/{id}', 'TagController@destroy');
+
+Route::post('/tagRepository', 'RepositoryController@associateTagRepository');

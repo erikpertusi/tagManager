@@ -2,10 +2,8 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class Tag extends Model
 {
@@ -20,9 +18,23 @@ class Tag extends Model
         'user_id'
     ];
 
-    public function tagsByUser(User $user)
+    public static function boot()
     {
-        return $this->where('user_id', $user->id);
+        parent::boot();
+
+        static::deleting(function ($model) {
+            TagRepository::where('tag_id', $model->id)->delete();
+        });
+    }
+
+    public function tagsByUser()
+    {
+        return $this->where('user_id', Auth::user()->id);
+    }
+
+    public function repositories()
+    {
+        return $this->belongsToMany('App\Repository', 'tag_repository', 'tag_id', 'repository_id');
     }
 
 }

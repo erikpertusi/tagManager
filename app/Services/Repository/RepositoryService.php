@@ -30,23 +30,4 @@ class RepositoryService implements RepositoryServiceInterface
         }
         return $repository;
     }
-
-    public function destroy(int $id)
-    {
-        $tag = $this->tagModel->find($id);
-        // DELETE REPOSITORIES
-        $tag->delete();
-    }
-
-    public function getTags(int $page, int $perPage)
-    {
-        $offset = ($page - 1) * $perPage;
-        $query = $this->tagModel->tagsByUser();
-
-
-        return [
-            'items' => $query->skip($offset)->take(10)->get(),
-            'total_count' => $query->count()
-        ];
-    }
 }

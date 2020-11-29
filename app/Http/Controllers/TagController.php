@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Tag\TagServiceFacade;
-use App\Tag;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -47,6 +44,6 @@ class TagController extends Controller
 
     public function get(Request $request)
     {
-        return TagServiceFacade::getTags($request->p);
+        return TagServiceFacade::getTags($request->p, $request->perPage);
     }
 }

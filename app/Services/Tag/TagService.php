@@ -28,17 +28,18 @@ class TagService implements TagServiceInterface
     public function destroy(int $id)
     {
         $tag = $this->tagModel->find($id);
-        // DELETE REPOSITORIES
         $tag->delete();
     }
 
-    public function getTags(int $page)
+    public function getTags(int $page, int $perPage)
     {
-        $perPage = 10;
         $offset = ($page - 1) * $perPage;
-        $query = $this->tagModel->where('user_id', Auth::user()->id);
+        $query = $this->tagModel->tagsByUser()->with('repositories');
 
 
-        return $query->skip($offset)->take(10)->get();
+        return [
+            'items' => $query->skip($offset)->take(10)->get(),
+            'total_count' => $query->count()
+        ];
     }
 }
