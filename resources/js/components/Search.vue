@@ -31,7 +31,7 @@
                         <b>{{ item.name }}</b>
                     </div>
                     <div style="float: right">
-                        <a href="#" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-tag text-success" aria-hidden="true" title="Adicionar Tag"></i></a>
+                        <a href="#" data-toggle="modal" data-target="#modal" v-on:click="setItemOpen(item)"><i class="fa fa-tag text-success" aria-hidden="true" title="Associar Tag"></i></a>
                     </div>
                     <br/>
                     <div style="float: left">
@@ -51,7 +51,7 @@
         <div class="col-sm-6 text-right">
             <a href="#" v-if="next" v-on:click="nextPage">Próxima</a>
         </div>
-        <modal-add-tag></modal-add-tag>
+        <modal-add-tag :item="itemOpen"></modal-add-tag>
     </div>
 </template>
 <script>
@@ -72,6 +72,7 @@
                 url: '',
                 total: 0,
                 next: false,
+                itemOpen: {},
             }
         },
         methods: {
@@ -101,6 +102,9 @@
                 url += '&page='+ this.page +'&per_page=' + this.perPage;
                 this.url = url;
             },
+            setItemOpen(item) {
+                this.itemOpen = item;
+            }
 
         },
         watch: {
