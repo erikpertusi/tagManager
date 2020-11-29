@@ -10,8 +10,8 @@
                 <div class="col-sm-6">
                     <a href="#" v-if="page > 1" v-on:click="getTags(false, true)">Anterior</a>
                 </div>
-                <div class="col-sm-6">
-                    <a href="#" v-on:click="getTags(true, false)">Próxima</a>
+                <div class="col-sm-6 text-right">
+                    <a href="#" v-on:click="getTags(true, false)" v-if="next">Próxima</a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,10 @@
                 tags: [],
                 nameTag: null,
                 idTag: 0,
-                page: 1
+                page: 1,
+                perPage: 15,
+                total: 0,
+                next: false
             }
         },
         methods: {
@@ -72,7 +75,22 @@
                 if (previous) {
                     this.page--;
                 }
-                axios.get('./api/tags?p=' + this.page).then(response => this.tags = response.data);
+                let self = this;
+                axios.get('./api/tags?p=' + this.page + '&perPage=' + this.perPage).then((response) => {
+                    self.tags = response.data.items;
+                    self.total = response.data.total_count;
+                });
+            }
+        },
+        watch: {
+            total: function (val) {
+                let checkNext = Math.ceil(val / this.perPage);
+                if (checkNext === this.page) {
+                    this.next = false;
+                } else {
+                    this.next = true;
+                }
+
             }
         },
         mounted() {
